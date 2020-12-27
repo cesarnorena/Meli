@@ -1,6 +1,8 @@
 package com.cesarnorena.meli.library.retrofit
 
 import com.cesarnorena.meli.BuildConfig
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -9,7 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ConnectorFactory {
 
-    val retrofit: Retrofit by lazy {
+    inline fun <reified T> create(
+        baseUrl: HttpUrl = BuildConfig.BASE_URL.toHttpUrl()
+    ): T {
         val level = if (BuildConfig.DEBUG) Level.BASIC else Level.NONE
         val logging = HttpLoggingInterceptor().setLevel(level)
 
@@ -17,12 +21,11 @@ object ConnectorFactory {
             .addInterceptor(logging)
             .build()
 
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(T::class.java)
     }
-
-    inline fun <reified T> get(): T = retrofit.create(T::class.java)
 }
