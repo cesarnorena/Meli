@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Meli</string>
+    <string name="activity_search_input">Search in Meli</string>
 </resources>
