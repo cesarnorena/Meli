@@ -14,8 +14,8 @@ object ConnectorFactory {
     inline fun <reified T> create(
         baseUrl: HttpUrl = BuildConfig.BASE_URL.toHttpUrl()
     ): T {
-        val level = if (BuildConfig.DEBUG) Level.BASIC else Level.NONE
-        val logging = HttpLoggingInterceptor().setLevel(level)
+        val logging = HttpLoggingInterceptor()
+            .setLevel(if (BuildConfig.DEBUG) Level.BASIC else Level.NONE)
 
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
