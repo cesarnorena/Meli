@@ -1,5 +1,7 @@
 package com.cesarnorena.meli.app.presentation.search
 
-sealed class SearchState {
+import com.cesarnorena.meli.app.presentation.State
+
+sealed class SearchState : State {
     data class SearchResultState(val products: List<String>) : SearchState()
 }

@@ -9,7 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ConnectorFactory {
+object RetrofitFactory {
 
     inline fun <reified T> create(
         baseUrl: HttpUrl = BuildConfig.BASE_URL.toHttpUrl()

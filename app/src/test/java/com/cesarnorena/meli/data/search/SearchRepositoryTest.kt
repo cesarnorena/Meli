@@ -1,6 +1,6 @@
 package com.cesarnorena.meli.data.search
 
-import com.cesarnorena.meli.library.retrofit.ConnectorFactory
+import com.cesarnorena.meli.library.retrofit.RetrofitFactory
 import com.hitanshudhawan.jsondsl.json
 import com.hitanshudhawan.jsondsl.jsonArray
 import kotlinx.coroutines.runBlocking
@@ -17,7 +17,7 @@ class SearchRepositoryTest {
 
     private val repository: SearchRepository by lazy {
         val baseUrl = mockServer.url("/search/")
-        val connector = ConnectorFactory.create<SearchConnector>(baseUrl)
+        val connector = RetrofitFactory.create<SearchConnector>(baseUrl)
         DefaultSearchRepository(connector)
     }
 

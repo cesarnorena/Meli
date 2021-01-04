@@ -1,8 +1,8 @@
 package com.cesarnorena.meli.app.presentation.search
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cesarnorena.meli.app.presentation.StatefulViewModel
 import com.cesarnorena.meli.app.presentation.search.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.SearchState.SearchResultState
 import com.cesarnorena.meli.domain.SearchProducts
@@ -11,12 +11,12 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val searchProducts: SearchProducts
-) : ViewModel() {
+) : StatefulViewModel<SearchState, SearchEvent>() {
 
-    val state = MutableLiveData<SearchState>()
+    override val state = MutableLiveData<SearchState>()
 
-    fun event(searchEvent: SearchEvent) {
-        if (searchEvent is NewSearchEvent) onNewSearch(searchEvent.query)
+    override fun event(event: SearchEvent) {
+        if (event is NewSearchEvent) onNewSearch(event.query)
     }
 
     private fun onNewSearch(
