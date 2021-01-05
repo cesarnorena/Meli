@@ -1,14 +1,11 @@
 package com.cesarnorena.meli.domain
 
-import com.cesarnorena.meli.data.search.DefaultSearchRepository
 import com.cesarnorena.meli.data.search.SearchRepository
-import com.cesarnorena.meli.data.site.DefaultSiteRepository
 import com.cesarnorena.meli.data.site.SiteRepository
-import com.cesarnorena.meli.library.retrofit.RetrofitFactory
 
 class SearchProducts(
-    private val siteRepository: SiteRepository = DefaultSiteRepository(),
-    private val searchRepository: SearchRepository = DefaultSearchRepository(RetrofitFactory.create())
+    private val siteRepository: SiteRepository,
+    private val searchRepository: SearchRepository
 ) {
 
     suspend operator fun invoke(query: String, offset: Int = 0): List<String> {

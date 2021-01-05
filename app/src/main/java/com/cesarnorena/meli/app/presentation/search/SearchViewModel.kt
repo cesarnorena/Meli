@@ -1,5 +1,6 @@
 package com.cesarnorena.meli.app.presentation.search
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.cesarnorena.meli.app.presentation.StatefulViewModel
@@ -9,7 +10,7 @@ import com.cesarnorena.meli.domain.SearchProducts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SearchViewModel(
+class SearchViewModel @ViewModelInject constructor(
     private val searchProducts: SearchProducts
 ) : StatefulViewModel<SearchState, SearchEvent>() {
 
