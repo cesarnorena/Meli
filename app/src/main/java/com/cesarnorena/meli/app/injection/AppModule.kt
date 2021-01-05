@@ -1,8 +1,5 @@
-package com.cesarnorena.meli.app.di
+package com.cesarnorena.meli.app.injection
 
-import android.app.Activity
-import com.cesarnorena.meli.app.navigation.Router
-import com.cesarnorena.meli.app.navigation.routes.ProductRoute
 import com.cesarnorena.meli.data.search.DefaultSearchRepository
 import com.cesarnorena.meli.data.search.SearchConnector
 import com.cesarnorena.meli.data.search.SearchRepository

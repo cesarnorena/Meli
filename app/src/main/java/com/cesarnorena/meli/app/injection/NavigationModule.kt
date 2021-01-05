@@ -1,4 +1,4 @@
-package com.cesarnorena.meli.app.di
+package com.cesarnorena.meli.app.injection
 
 import android.app.Activity
 import com.cesarnorena.meli.app.navigation.Router
