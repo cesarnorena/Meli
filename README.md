@@ -5,7 +5,7 @@ Android app developed using the [public API](https://api.mercadolibre.com/) of M
 
 ## Architecture
 
-MVVM (Model View ViewModel) in the presentation layer + Clean Architecture.
+MVVM (Model View ViewModel) in the presentation layer with LiveData + Clean Architecture.
 
 ![Architecture diagram](./.images/meli_architecture.png)
 
