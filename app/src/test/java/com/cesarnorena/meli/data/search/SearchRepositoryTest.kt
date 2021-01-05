@@ -21,6 +21,9 @@ class SearchRepositoryTest {
         DefaultSearchRepository(connector)
     }
 
+    private val siteId = "MLB"
+    private val offset = 0
+
     @After
     fun tearDown() {
         mockServer.shutdown()
@@ -32,7 +35,7 @@ class SearchRepositoryTest {
         val body = json { "results" to jsonArray(product) }
         mockResponse(body)
 
-        val response = repository.get("motorola g6")
+        val response = repository.get(siteId, "motorola g6", offset)
         assert(response.results.isNotEmpty())
     }
 
@@ -40,7 +43,7 @@ class SearchRepositoryTest {
     fun emptyResponse() = runBlocking {
         mockResponse(json { "results" to jsonArray() })
 
-        val response = repository.get("")
+        val response = repository.get(siteId, "", offset)
         assert(response.results.isEmpty())
     }
 
@@ -48,7 +51,7 @@ class SearchRepositoryTest {
     fun errorResponse() = runBlocking {
         mockResponse(code = 500)
 
-        repository.get("")
+        repository.get(siteId, "", offset)
         Assert.fail("the repository should have thrown an exception")
     }
 
