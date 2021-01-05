@@ -3,6 +3,8 @@ package com.cesarnorena.meli.app.presentation.search
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.cesarnorena.meli.app.navigation.Router
+import com.cesarnorena.meli.app.navigation.routes.ProductRoute
 import com.cesarnorena.meli.app.presentation.StatefulViewModel
 import com.cesarnorena.meli.app.presentation.search.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.SearchState.SearchResultState
@@ -11,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SearchViewModel @ViewModelInject constructor(
+    private val router: Router,
     private val searchProducts: SearchProducts
 ) : StatefulViewModel<SearchState, SearchEvent>() {
 
@@ -25,5 +28,7 @@ class SearchViewModel @ViewModelInject constructor(
     ) = viewModelScope.launch(Dispatchers.IO) {
         val products = searchProducts(query)
         state.postValue(SearchResultState(products))
+
+        router.navigate(ProductRoute())
     }
 }
