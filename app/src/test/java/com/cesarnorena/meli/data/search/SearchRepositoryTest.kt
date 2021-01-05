@@ -36,7 +36,7 @@ class SearchRepositoryTest {
         mockResponse(body)
 
         val response = repository.get(siteId, "motorola g6", offset)
-        assert(response.results.isNotEmpty())
+        assert(response.results.isEmpty())
     }
 
     @Test
