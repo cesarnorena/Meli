@@ -5,7 +5,7 @@ import com.cesarnorena.meli.data.search.SearchConnector
 import com.cesarnorena.meli.data.search.SearchRepository
 import com.cesarnorena.meli.data.site.DefaultSiteRepository
 import com.cesarnorena.meli.data.site.SiteRepository
-import com.cesarnorena.meli.domain.SearchProducts
+import com.cesarnorena.meli.domain.search.SearchProducts
 import com.cesarnorena.meli.library.retrofit.RetrofitFactory
 import dagger.Module
 import dagger.Provides
@@ -14,13 +14,13 @@ import dagger.hilt.android.components.ApplicationComponent
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class AppModule {
-
-    @Provides
-    fun provideSearchConnector(): SearchConnector = RetrofitFactory.create()
+class ApplicationModule {
 
     @Provides
     fun provideSiteRepository(): SiteRepository = DefaultSiteRepository()
+
+    @Provides
+    fun provideSearchConnector(): SearchConnector = RetrofitFactory.create()
 
     @Provides
     fun provideSearchRepository(

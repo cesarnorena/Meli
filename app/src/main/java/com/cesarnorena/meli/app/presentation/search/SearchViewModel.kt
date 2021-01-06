@@ -7,7 +7,7 @@ import com.cesarnorena.meli.app.navigation.Router
 import com.cesarnorena.meli.app.presentation.StatefulViewModel
 import com.cesarnorena.meli.app.presentation.search.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.SearchState.SearchResultState
-import com.cesarnorena.meli.domain.SearchProducts
+import com.cesarnorena.meli.domain.search.SearchProducts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
