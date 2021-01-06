@@ -1,10 +1,13 @@
 package com.cesarnorena.meli.app.presentation.search
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cesarnorena.meli.app.presentation.StatefulActivity
 import com.cesarnorena.meli.app.presentation.search.SearchEvent.NewSearchEvent
+import com.cesarnorena.meli.app.presentation.search.SearchState.LoadingState
 import com.cesarnorena.meli.app.presentation.search.SearchState.SearchResultState
 import com.cesarnorena.meli.databinding.ActivitySearchBinding
 import com.cesarnorena.meli.library.extensions.hideKeyboard
@@ -24,19 +27,27 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
         setContentView(binding.root)
 
         binding.searchInput.onSearchAction {
-            hideKeyboard(binding.root.windowToken)
             viewModel.event(NewSearchEvent(it))
+        }
+
+        with(binding.searchList) {
+            layoutManager = LinearLayoutManager(this@SearchActivity)
+            addItemDecoration(DividerItemDecoration(this@SearchActivity, VERTICAL))
+            adapter = SearchListAdapter(mutableListOf())
         }
 
         viewModel.state.observe(this, ::bindState)
     }
 
-    override fun bindState(state: SearchState) {
-        if (state is SearchResultState) {
-            val product = state.products.firstOrNull()
-            if (product != null) {
-                Toast.makeText(this, state.products.first(), Toast.LENGTH_LONG).show()
-            }
+    override fun bindState(state: SearchState) = when (state) {
+        is LoadingState -> {
+            hideKeyboard(binding.root.windowToken)
+            // TODO: Show loading
+        }
+
+        is SearchResultState -> {
+            // TODO: Dismiss loading
+            (binding.searchList.adapter as SearchListAdapter).addAll(state.products)
         }
     }
 }

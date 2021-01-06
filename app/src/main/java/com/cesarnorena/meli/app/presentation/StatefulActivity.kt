@@ -16,5 +16,5 @@ abstract class StatefulViewModel<S : State, E : Event> : ViewModel() {
 abstract class StatefulActivity<S : State, VM : StatefulViewModel<S, out Event>> :
     AppCompatActivity() {
     protected abstract val viewModel: VM
-    abstract fun bindState(state: S)
+    protected abstract fun bindState(state: S)
 }
