@@ -1,4 +1,5 @@
 # Meli test project
+![checks](https://github.com/cesarnorena/meli/workflows/Checks/badge.svg?branch=main)
 
 Android app developed using the [public API](https://api.mercadolibre.com/) of Mercado Libre (Meli) to search products and get some extra details.
 
