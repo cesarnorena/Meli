@@ -14,10 +14,10 @@ class SearchActivityTest {
     fun performSearch() {
         val scenario = launchActivity()
 
-        onView(withId(R.id.searchInput))
+        onView(withId(R.id.search_input))
             .perform(typeText("Motorola"))
 
-        onView(withId(R.id.searchInput))
+        onView(withId(R.id.search_input))
             .perform(pressImeActionButton())
 
         scenario.close()
