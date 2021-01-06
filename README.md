@@ -24,7 +24,14 @@ Running instrumented tests:
  
 
 ## Linter
-Code style is not strongly defined, but for this test project the defaults are enough.
+Kotlin code style uses the default rules of ktlint project.
+
+Running ktlint check:
 ```
-./gradlew lint
+./gradlew ktlintCheck
+```
+
+Running ktlint format
+```
+./gradlew ktlintFormat
 ```
