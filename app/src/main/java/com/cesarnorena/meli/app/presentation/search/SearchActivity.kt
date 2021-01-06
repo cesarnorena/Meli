@@ -45,14 +45,16 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
     }
 
     private fun setupSearchInput() {
-        binding.searchInput.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { viewModel.event(SearchEvent.NewSearchEvent(it)) }
-                return true
-            }
+        binding.searchInput.setOnQueryTextListener(
+            object : OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let { viewModel.event(SearchEvent.NewSearchEvent(it)) }
+                    return true
+                }
 
-            override fun onQueryTextChange(newText: String?) = false
-        })
+                override fun onQueryTextChange(newText: String?) = false
+            }
+        )
     }
 
     private fun setupAdapter() {

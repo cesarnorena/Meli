@@ -8,7 +8,7 @@ import com.cesarnorena.meli.databinding.ListItemSearchBinding
 import com.cesarnorena.meli.library.glide.GlideLoader
 import com.cesarnorena.meli.library.glide.ImageLoader
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 class SearchListAdapter(
     private val list: MutableList<SearchItem>
