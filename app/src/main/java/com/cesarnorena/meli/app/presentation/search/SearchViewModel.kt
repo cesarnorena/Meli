@@ -25,8 +25,6 @@ class SearchViewModel @ViewModelInject constructor(
     override val state = MutableLiveData<SearchState>()
 
     override fun event(event: SearchEvent) {
-        if (event is NewSearchEvent) onNewSearch(event.query)
-
         when (event) {
             is NewSearchEvent -> onNewSearch(event.query)
             is ItemClickEvent -> router.navigate(ProductRoute())
