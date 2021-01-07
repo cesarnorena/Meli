@@ -1,4 +1,4 @@
-package com.cesarnorena.meli.app.presentation.search
+package com.cesarnorena.meli.app.presentation.search.stateful
 
 import com.cesarnorena.meli.app.presentation.State
 import com.cesarnorena.meli.data.search.model.SearchItem

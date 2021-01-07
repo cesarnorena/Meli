@@ -11,7 +11,7 @@ class ProductRoute : Route {
         descriptor: String
     ): Boolean = descriptor.contains("meli://product")
 
-    override suspend fun navigate(activity: Activity) {
+    override fun navigate(activity: Activity) {
         val intent = Intent(activity, DetailActivity::class.java)
         activity.startActivity(intent)
     }

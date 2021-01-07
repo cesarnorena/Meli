@@ -11,10 +11,11 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class SearchListAdapter(
-    private val list: MutableList<SearchItem>
+    private val list: MutableList<SearchItem>,
+    private val imageLoader: ImageLoader = GlideLoader()
 ) : RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
 
-    private val imageLoader: ImageLoader = GlideLoader()
+    var clickListener: ((item: SearchItem) -> Unit)? = null
 
     class ViewHolder(
         val binding: ListItemSearchBinding
@@ -34,6 +35,8 @@ class SearchListAdapter(
 
         val formatter = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"))
         productPrice.text = formatter.format(item.price)
+
+        root.setOnClickListener { clickListener?.invoke(item) }
     }
 
     override fun getItemCount(): Int = list.size
