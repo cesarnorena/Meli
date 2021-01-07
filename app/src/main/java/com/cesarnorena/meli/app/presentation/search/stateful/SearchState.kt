@@ -5,6 +5,6 @@ import com.cesarnorena.meli.data.search.model.SearchItem
 
 sealed class SearchState : State {
     object LoadingState : SearchState()
-    object ErrorState : SearchState()
+    data class ErrorState(val exception: Exception) : SearchState()
     data class SearchResultState(val products: List<SearchItem>) : SearchState()
 }

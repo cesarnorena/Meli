@@ -11,7 +11,6 @@ class SearchProducts(
 
     suspend operator fun invoke(query: String, offset: Int = 0): List<SearchItem> {
         if (query.isEmpty()) return emptyList()
-
         val siteId = siteRepository.get()
         return searchRepository.get(siteId, query, offset).results
     }

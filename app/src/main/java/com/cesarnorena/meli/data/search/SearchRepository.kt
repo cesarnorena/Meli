@@ -12,7 +12,7 @@ class DefaultSearchRepository(
 
     override suspend fun get(siteId: String, query: String, offset: Int): SearchResult {
         val response = connector.searchProducts(siteId, query, offset)
-        if (response.code() != 200) throw Exception()
+        if (response.code() != 200) throw Exception(response.message())
         return response.body() ?: throw Exception()
     }
 }
