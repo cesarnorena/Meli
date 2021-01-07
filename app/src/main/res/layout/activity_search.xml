@@ -6,27 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".app.presentation.search.SearchActivity">
 
+    <ImageView
+        android:id="@+id/brand"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/yellow_200"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_mercado_livre"
+        app:layout_constraintBottom_toTopOf="@id/search_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.cesarnorena.meli.app.presentation.search.views.SearchRecyclerView
         android:id="@+id/search_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="4dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/search_background"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/list_item_search"
-        tools:visibility="visible" />
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/search_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <View
         android:id="@+id/search_background"
@@ -56,5 +57,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:queryBackground="@color/white"
         app:queryHint="@string/activity_search_input" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/search_input"
+        app:layout_constraintEnd_toEndOf="@id/search_input"
+        app:layout_constraintTop_toTopOf="@id/search_input"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

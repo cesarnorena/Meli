@@ -13,6 +13,7 @@ import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.SearchR
 import com.cesarnorena.meli.databinding.ActivitySearchBinding
 import com.cesarnorena.meli.library.extensions.hideKeyboard
 import com.cesarnorena.meli.library.extensions.onSearchSubmit
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,21 +39,30 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
         viewModel.state.observe(this, ::bindState)
     }
 
-    override fun bindState(state: SearchState) = when (state) {
-        is LoadingState -> with(binding) {
-            hideKeyboard(root.windowToken)
-            progress.visibility = View.VISIBLE
-        }
+    override fun bindState(state: SearchState) {
+        when (state) {
+            is LoadingState -> with(binding) {
+                hideKeyboard(root.windowToken)
+                searchInput.clearFocus()
+                searchInput.isEnabled = false
+                progress.visibility = View.VISIBLE
+            }
 
-        is SearchResultState -> with(binding) {
-            progress.visibility = View.GONE
-            searchList.visibility = View.VISIBLE
-            searchList.addAll(state.products)
-        }
+            is SearchResultState -> with(binding) {
+                progress.visibility = View.GONE
+                brand.visibility = View.GONE
+                searchList.visibility = View.VISIBLE
+                searchInput.isEnabled = true
+                searchList.addAll(state.products)
+            }
 
-        is ErrorState -> with(binding) {
-            progress.visibility = View.GONE
-            // TODO: Show error state
+            is ErrorState -> with(binding) {
+                progress.visibility = View.GONE
+                searchInput.isEnabled = true
+                Snackbar.make(binding.root, "☠️ Error️!", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Dismiss") {}
+                    .show()
+            }
         }
     }
 }
