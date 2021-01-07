@@ -7,6 +7,7 @@ import com.cesarnorena.meli.app.presentation.StatefulActivity
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.ItemClickEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState
+import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.ErrorState
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.LoadingState
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.SearchResultState
 import com.cesarnorena.meli.databinding.ActivitySearchBinding
@@ -38,14 +39,20 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
     }
 
     override fun bindState(state: SearchState) = when (state) {
-        is LoadingState -> {
-            hideKeyboard(binding.root.windowToken)
-            binding.progress.visibility = View.VISIBLE
+        is LoadingState -> with(binding) {
+            hideKeyboard(root.windowToken)
+            progress.visibility = View.VISIBLE
         }
 
-        is SearchResultState -> {
-            binding.progress.visibility = View.GONE
-            binding.searchList.addAll(state.products)
+        is SearchResultState -> with(binding) {
+            progress.visibility = View.GONE
+            searchList.visibility = View.VISIBLE
+            searchList.addAll(state.products)
+        }
+
+        is ErrorState -> with(binding) {
+            progress.visibility = View.GONE
+            // TODO: Show error state
         }
     }
 }

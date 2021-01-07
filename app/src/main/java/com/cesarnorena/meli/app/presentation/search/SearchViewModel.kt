@@ -10,6 +10,7 @@ import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.ItemClickEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState
+import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.ErrorState
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.LoadingState
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.SearchResultState
 import com.cesarnorena.meli.domain.search.SearchProducts
@@ -37,7 +38,11 @@ class SearchViewModel @ViewModelInject constructor(
     ) = viewModelScope.launch(Dispatchers.IO) {
         state.postValue(LoadingState)
 
-        val products = searchProducts(query)
-        state.postValue(SearchResultState(products))
+        try {
+            val products = searchProducts(query)
+            state.postValue(SearchResultState(products))
+        } catch (e: Exception) {
+            state.postValue(ErrorState)
+        }
     }
 }
