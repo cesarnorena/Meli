@@ -30,22 +30,22 @@ class SearchViewModel @ViewModelInject constructor(
 
     override val state = MutableLiveData<SearchState>()
 
-    private var products: List<SearchItem>?
-        get() = savedState.getLiveData<List<SearchItem>>("products").value
+    private var searchItems: List<SearchItem>?
+        get() = savedState.getLiveData<List<SearchItem>>("search-items").value
         set(value) {
-            savedState["products"] = value
+            savedState["search-items"] = value
         }
 
     init {
-        products?.let {
-            state.postValue(SearchResultState(it))
+        searchItems?.let {
+            state.value = SearchResultState(it)
         }
     }
 
     override fun event(event: SearchEvent) {
         when (event) {
             is NewSearchEvent -> onNewSearch(event.query)
-            is ItemClickEvent -> router.navigate(ProductRoute())
+            is ItemClickEvent -> router.navigate(ProductRoute(event.item.id))
         }
     }
 
@@ -55,9 +55,9 @@ class SearchViewModel @ViewModelInject constructor(
         state.postValue(LoadingState)
 
         try {
-            val newProducts = searchProducts(query ?: "")
-            withContext(Main) { products = newProducts }
-            state.postValue(SearchResultState(newProducts))
+            val newSearchItems = searchProducts(query ?: "")
+            withContext(Main) { searchItems = newSearchItems }
+            state.postValue(SearchResultState(newSearchItems))
         } catch (e: Exception) {
             state.postValue(ErrorState(e))
         }

@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Meli</string>
+
+    <!--region activity_search-->
     <string name="activity_search_input">Search in Meli</string>
     <string name="activity_search_error">☠️ Error️!</string>
     <string name="activity_search_error_dismiss">Dismiss</string>
+    <!--endregion-->
+
+    <!--region activity_product-->
+    <string name="activity_product_buy_button">buy now</string>
+    <!--endregion-->
 </resources>

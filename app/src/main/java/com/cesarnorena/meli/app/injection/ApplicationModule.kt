@@ -1,11 +1,13 @@
 package com.cesarnorena.meli.app.injection
 
+import com.cesarnorena.meli.data.product.DefaultProductRepository
+import com.cesarnorena.meli.data.product.ProductConnector
+import com.cesarnorena.meli.data.product.ProductRepository
 import com.cesarnorena.meli.data.search.DefaultSearchRepository
 import com.cesarnorena.meli.data.search.SearchConnector
 import com.cesarnorena.meli.data.search.SearchRepository
 import com.cesarnorena.meli.data.site.DefaultSiteRepository
 import com.cesarnorena.meli.data.site.SiteRepository
-import com.cesarnorena.meli.domain.search.SearchProducts
 import com.cesarnorena.meli.library.retrofit.RetrofitFactory
 import dagger.Module
 import dagger.Provides
@@ -17,10 +19,13 @@ import dagger.hilt.android.components.ApplicationComponent
 class ApplicationModule {
 
     @Provides
-    fun provideSiteRepository(): SiteRepository = DefaultSiteRepository()
+    fun provideSearchConnector(): SearchConnector = RetrofitFactory.create()
 
     @Provides
-    fun provideSearchConnector(): SearchConnector = RetrofitFactory.create()
+    fun provideProductConnector(): ProductConnector = RetrofitFactory.create()
+
+    @Provides
+    fun provideSiteRepository(): SiteRepository = DefaultSiteRepository()
 
     @Provides
     fun provideSearchRepository(
@@ -28,8 +33,7 @@ class ApplicationModule {
     ): SearchRepository = DefaultSearchRepository(connector)
 
     @Provides
-    fun provideSearchProducts(
-        siteRepository: SiteRepository,
-        searchRepository: SearchRepository
-    ): SearchProducts = SearchProducts(siteRepository, searchRepository)
+    fun provideProductRepository(
+        connector: ProductConnector
+    ): ProductRepository = DefaultProductRepository(connector)
 }

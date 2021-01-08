@@ -35,7 +35,7 @@ class SearchRepositoryTest {
         val body = json { "results" to jsonArray(product) }
         mockResponse(body)
 
-        val response = repository.get(siteId, "motorola g6", offset)
+        val response = repository.search(siteId, "motorola g6", offset)
         assert(response.results.isNotEmpty())
     }
 
@@ -43,7 +43,7 @@ class SearchRepositoryTest {
     fun emptyResponse() = runBlocking {
         mockResponse(json { "results" to jsonArray() })
 
-        val response = repository.get(siteId, "", offset)
+        val response = repository.search(siteId, "", offset)
         assert(response.results.isEmpty())
     }
 
@@ -51,7 +51,7 @@ class SearchRepositoryTest {
     fun errorResponse() = runBlocking {
         mockResponse(code = 500)
 
-        repository.get(siteId, "", offset)
+        repository.search(siteId, "", offset)
         Assert.fail("the repository should have thrown an exception")
     }
 

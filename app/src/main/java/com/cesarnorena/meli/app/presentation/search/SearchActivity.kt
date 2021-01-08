@@ -51,10 +51,10 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
 
             is SearchResultState -> with(binding) {
                 progress.visibility = View.GONE
-                brand.visibility = View.GONE
+                meliBrand.visibility = View.GONE
                 searchList.visibility = View.VISIBLE
                 searchInput.isEnabled = true
-                searchList.addAll(state.products)
+                searchList.addAll(state.searchItems)
             }
 
             is ErrorState -> with(binding) {
