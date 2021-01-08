@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow_200"
     tools:context=".app.presentation.search.SearchActivity">
 
     <ImageView
         android:id="@+id/brand"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/yellow_200"
-        android:scaleType="centerInside"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_mercado_livre"
         app:layout_constraintBottom_toTopOf="@id/search_background"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="4dp"
+        android:background="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/search_background"
         app:layout_constraintTop_toTopOf="parent"

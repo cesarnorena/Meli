@@ -3,6 +3,7 @@ package com.cesarnorena.meli.app.presentation.search
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import com.cesarnorena.meli.R
 import com.cesarnorena.meli.app.presentation.StatefulActivity
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.ItemClickEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.NewSearchEvent
@@ -59,10 +60,18 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
             is ErrorState -> with(binding) {
                 progress.visibility = View.GONE
                 searchInput.isEnabled = true
-                Snackbar.make(binding.root, "☠️ Error️!", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Dismiss") {}
-                    .show()
+                showError()
             }
         }
+    }
+
+    private fun showError() {
+        Snackbar.make(
+            binding.root,
+            R.string.activity_search_error,
+            Snackbar.LENGTH_INDEFINITE
+        ).setAction(
+            R.string.activity_search_error_dismiss
+        ) {}.show()
     }
 }
