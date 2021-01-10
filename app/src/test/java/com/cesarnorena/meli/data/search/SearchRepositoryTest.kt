@@ -30,8 +30,13 @@ class SearchRepositoryTest {
     }
 
     @Test
-    fun successResponse() = runBlocking {
-        val product = json { "id" to "1234"; "title" to "Motorola"; "price" to 10000 }
+    fun successResponseWithValidQuery() = runBlocking {
+        val product = json {
+            "id" to "1234"
+            "title" to "Motorola"
+            "price" to 10000
+            "thumbnail" to "https://http2.mlstatic.com/D_NQ_NP_669939-MLA44492818154_012021-W.webp"
+        }
         val body = json { "results" to jsonArray(product) }
         mockResponse(body)
 
@@ -40,7 +45,7 @@ class SearchRepositoryTest {
     }
 
     @Test
-    fun emptyResponse() = runBlocking {
+    fun emptyResponseWithEmptyQuery() = runBlocking {
         mockResponse(json { "results" to jsonArray() })
 
         val response = repository.search(siteId, "", offset)
@@ -48,7 +53,7 @@ class SearchRepositoryTest {
     }
 
     @Test(expected = Exception::class)
-    fun errorResponse() = runBlocking {
+    fun errorResponseWithServerError() = runBlocking {
         mockResponse(code = 500)
 
         repository.search(siteId, "", offset)

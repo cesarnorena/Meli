@@ -7,6 +7,11 @@ buildscript {
         hilt_vm_version = "1.0.0-alpha02"
         ktlint_version = "9.4.1"
         glide_version = "4.11.0"
+        mockito_version = "3.7.0"
+        mockwebserver_version = "4.9.0"
+        espresso_version = "3.3.0"
+        kotlinx_coroutines_test_version = "1.4.2"
+        jsondsl_version = "1.0.3"
     }
 
     repositories {

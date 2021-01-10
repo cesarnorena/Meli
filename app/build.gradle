@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.cesarnorena.meli.app.MeliTestRunner"
     }
 
     buildTypes {
@@ -45,6 +45,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
@@ -55,12 +59,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
 
     implementation "com.google.android.material:material:1.2.1"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_vm_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_vm_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_vm_version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -70,10 +75,16 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
     testImplementation "junit:junit:4.13.1"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"
-    testImplementation "com.github.hitanshu-dhawan:JsonDSL:1.0.3"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutines_test_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
+    testImplementation "com.github.hitanshu-dhawan:JsonDSL:$jsondsl_version"
 
     androidTestImplementation "androidx.test.ext:junit:1.1.2"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_version"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+    androidTestImplementation "com.github.hitanshu-dhawan:JsonDSL:$jsondsl_version"
 }

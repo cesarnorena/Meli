@@ -30,6 +30,7 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
         setContentView(binding.root)
 
         binding.searchInput.onSearchSubmit {
+            idleResource.increment()
             viewModel.event(NewSearchEvent(it))
         }
 
@@ -55,12 +56,14 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
                 searchList.visibility = View.VISIBLE
                 searchInput.isEnabled = true
                 searchList.addAll(state.searchItems)
+                idleResource.decrement()
             }
 
             is ErrorState -> with(binding) {
                 progress.visibility = View.GONE
                 searchInput.isEnabled = true
                 showError()
+                idleResource.decrement()
             }
         }
     }

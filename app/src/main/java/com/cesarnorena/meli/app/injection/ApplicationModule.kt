@@ -1,5 +1,6 @@
 package com.cesarnorena.meli.app.injection
 
+import com.cesarnorena.meli.BuildConfig
 import com.cesarnorena.meli.data.product.DefaultProductRepository
 import com.cesarnorena.meli.data.product.ProductConnector
 import com.cesarnorena.meli.data.product.ProductRepository
@@ -13,16 +14,30 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
+
+@Module
+@InstallIn(ApplicationComponent::class)
+class BaseUrlModule {
+
+    @Provides
+    fun providesBaseUrl(): HttpUrl = BuildConfig.BASE_URL.toHttpUrl()
+}
 
 @Module
 @InstallIn(ApplicationComponent::class)
 class ApplicationModule {
 
     @Provides
-    fun provideSearchConnector(): SearchConnector = RetrofitFactory.create()
+    fun provideSearchConnector(
+        baseUrl: HttpUrl
+    ): SearchConnector = RetrofitFactory.create(baseUrl)
 
     @Provides
-    fun provideProductConnector(): ProductConnector = RetrofitFactory.create()
+    fun provideProductConnector(
+        baseUrl: HttpUrl
+    ): ProductConnector = RetrofitFactory.create(baseUrl)
 
     @Provides
     fun provideSiteRepository(): SiteRepository = DefaultSiteRepository()
