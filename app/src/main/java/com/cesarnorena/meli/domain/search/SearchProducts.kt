@@ -3,8 +3,8 @@ package com.cesarnorena.meli.domain.search
 import com.cesarnorena.meli.data.search.SearchRepository
 import com.cesarnorena.meli.data.search.model.SearchItem
 import com.cesarnorena.meli.data.site.SiteRepository
-import javax.inject.Inject
 import kotlinx.coroutines.withTimeout
+import javax.inject.Inject
 
 class SearchProducts @Inject constructor(
     private val siteRepository: SiteRepository,
