@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow_200">#FFF26B</color>
+    <color name="yellow_200">#FFFF57</color>
     <color name="yellow_500">#FFDD0D</color>
-    <color name="yellow_700">#F5D415</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="yellow_700">#C7AC00</color>
+    <color name="blue_200">#6C7CFF</color>
+    <color name="blue_500">#2250DD</color>
+    <color name="blue_700">#0029AA</color>
+    <color name="ash_400">#3E3E3E</color>
+    <color name="ash_600">#2D2D2D</color>
+    <color name="ash_700">#020202</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

@@ -44,6 +44,7 @@
 
     <Button
         android:id="@+id/product_buy_button"
+        style="@style/Theme.Meli.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/activity_product_buy_button"
