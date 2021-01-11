@@ -1,6 +1,6 @@
 package com.cesarnorena.meli.data.product
 
-import com.cesarnorena.meli.data.search.model.ProductResponse
+import com.cesarnorena.meli.data.product.model.ProductResponse
 
 interface ProductRepository {
     suspend fun get(id: String): ProductResponse

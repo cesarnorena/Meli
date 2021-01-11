@@ -16,21 +16,37 @@ internal class SearchRecyclerView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
+    private var onLoadMore: ((item: SearchItem) -> Unit)? = null
+
     init {
         val inflater = LayoutInflater.from(context)
         ListItemSearchBinding.inflate(inflater)
 
         layoutManager = LinearLayoutManager(context)
         addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-
         adapter = SearchListAdapter(mutableListOf())
     }
 
+    override fun onScrolled(dx: Int, dy: Int) {
+        super.onScrolled(dx, dy)
+        val lastVisible = layoutManager().findLastCompletelyVisibleItemPosition()
+        val loadMore = lastVisible == (adapter().itemCount - 1)
+        if (loadMore) onLoadMore?.invoke(adapter().getItem(lastVisible))
+    }
+
     fun onClickListener(listener: ((item: SearchItem) -> Unit)) {
-        (adapter as SearchListAdapter).clickListener = listener
+        adapter().clickListener = listener
+    }
+
+    fun onLoadMore(listener: ((item: SearchItem) -> Unit)) {
+        onLoadMore = listener
     }
 
     fun addAll(newList: List<SearchItem>) {
-        (adapter as SearchListAdapter).addAll(newList)
+        adapter().addAll(newList)
     }
+
+    private fun adapter() = (adapter as SearchListAdapter)
+
+    private fun layoutManager() = (layoutManager as LinearLayoutManager)
 }

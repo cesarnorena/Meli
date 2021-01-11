@@ -1,6 +1,6 @@
 package com.cesarnorena.meli.data.product
 
-import com.cesarnorena.meli.data.search.model.ProductResponse
+import com.cesarnorena.meli.data.product.model.ProductResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

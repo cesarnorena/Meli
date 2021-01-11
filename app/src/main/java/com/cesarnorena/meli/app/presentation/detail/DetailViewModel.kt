@@ -12,7 +12,7 @@ import com.cesarnorena.meli.app.presentation.detail.stateful.DetailState
 import com.cesarnorena.meli.app.presentation.detail.stateful.DetailState.ErrorSate
 import com.cesarnorena.meli.app.presentation.detail.stateful.DetailState.LoadingState
 import com.cesarnorena.meli.app.presentation.detail.stateful.DetailState.ProductState
-import com.cesarnorena.meli.data.search.model.ProductResponse
+import com.cesarnorena.meli.data.product.model.ProductResponse
 import com.cesarnorena.meli.domain.product.GetProductDetails
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main

@@ -1,7 +1,7 @@
 package com.cesarnorena.meli.app.presentation.detail.stateful
 
 import com.cesarnorena.meli.app.presentation.State
-import com.cesarnorena.meli.data.search.model.ProductResponse
+import com.cesarnorena.meli.data.product.model.ProductResponse
 
 sealed class DetailState : State {
     object LoadingState : DetailState()

@@ -1,7 +1,7 @@
 package com.cesarnorena.meli.domain.product
 
 import com.cesarnorena.meli.data.product.ProductRepository
-import com.cesarnorena.meli.data.search.model.ProductResponse
+import com.cesarnorena.meli.data.product.model.ProductResponse
 import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.withTimeout
 import javax.inject.Inject

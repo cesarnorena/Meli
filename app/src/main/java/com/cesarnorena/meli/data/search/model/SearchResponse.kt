@@ -13,5 +13,6 @@ data class SearchItem(
     @SerializedName("id") val id: String,
     @SerializedName("title") val title: String,
     @SerializedName("price") val price: Number,
+    @SerializedName("currency_id") val currency: String,
     @SerializedName("thumbnail") val thumbnail: String
 ) : Parcelable
