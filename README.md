@@ -8,7 +8,7 @@ Android app developed using the [public API](https://api.mercadolibre.com/) of M
 
 MVVM (Model View ViewModel) in the presentation layer with LiveData and Coroutines + Clean Architecture.
 
-Big flows or features are intended to belong to an Android module, but since this is a small flow I didn't create a independient Module for it. Multi-module apps also require common libraries or modules, an example of it would be the `StatefulViewModel` and `StafeulActivity` classes.
+Big flows or features are meant to belong to an Android module, but since this is a small flow, I didn't create a independient module for it. Multi-module apps also require common libraries or modules, an example of it would be the `StatefulViewModel` and `StafeulActivity` classes.
 
 ![Architecture diagram](./.images/meli_architecture.png)
 
