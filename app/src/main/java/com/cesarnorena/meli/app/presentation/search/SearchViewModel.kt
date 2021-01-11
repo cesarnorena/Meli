@@ -10,6 +10,7 @@ import com.cesarnorena.meli.app.navigation.routes.ProductRoute
 import com.cesarnorena.meli.app.presentation.StatefulViewModel
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.ItemClickEvent
+import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.LoadMoreEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.ErrorState
@@ -45,6 +46,9 @@ class SearchViewModel @ViewModelInject constructor(
     override fun event(event: SearchEvent) {
         when (event) {
             is NewSearchEvent -> onNewSearch(event.query)
+            is LoadMoreEvent -> {
+                // TODO: Load more items from the search
+            }
             is ItemClickEvent -> router.navigate(ProductRoute(event.item.id))
         }
     }

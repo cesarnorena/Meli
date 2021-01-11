@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.cesarnorena.meli.R
 import com.cesarnorena.meli.app.presentation.StatefulActivity
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.ItemClickEvent
+import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.LoadMoreEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchEvent.NewSearchEvent
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState
 import com.cesarnorena.meli.app.presentation.search.stateful.SearchState.ErrorState
@@ -38,6 +39,10 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
             viewModel.event(ItemClickEvent(it))
         }
 
+        binding.searchList.onLoadMore {
+            viewModel.event(LoadMoreEvent(it))
+        }
+
         viewModel.state.observe(this, ::bindState)
     }
 
@@ -68,11 +73,13 @@ class SearchActivity : StatefulActivity<SearchState, SearchViewModel>() {
         }
     }
 
-    private fun showError() {
+    private fun showError(
+        duration: Int = Snackbar.LENGTH_INDEFINITE
+    ) {
         Snackbar.make(
             binding.root,
             R.string.activity_search_error,
-            Snackbar.LENGTH_INDEFINITE
+            duration
         ).setAction(
             R.string.activity_search_error_dismiss
         ) {}.show()
