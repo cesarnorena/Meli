@@ -70,6 +70,7 @@ class SearchActivityTest {
             "title" to "Moto G6"
             "price" to 10000
             "thumbnail" to "https://http2.mlstatic.com/D_NQ_NP_669939-MLA44492818154_012021-W.webp"
+            "currency_id" to "BRL"
         }
         val body = json { "results" to jsonArray(product) }.toString()
         mockServer.enqueue(MockResponse().setResponseCode(200).setBody(body))
