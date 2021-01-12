@@ -44,5 +44,5 @@ Some considerations:
 - I didn't test everything because with the two tests I created, you can understand the types of tests I would do and which other components would have coverage.
 - I would work with a multi-module project, but for the test it wouldn't make much sense to have a single feaature module project.
 - I didn't invest time in the visual part of the second screen, but with the first one you can understand the general construction of screens. I can use Anko to create screens with code, but today it's deprecated and Jetpack Compose is not production ready yet.
-- App almost ready for dark theme.
+- App almost ready for dark mode.
 - I left some TODOs on what I would do with a little more time.
